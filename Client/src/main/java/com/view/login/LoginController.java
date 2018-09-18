@@ -17,6 +17,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -168,12 +170,33 @@ public class LoginController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/hall.fxml"));
         Parent window = (Pane) fxmlLoader.load();
         hallController =  fxmlLoader.getController();
-        /*TODO - add a listener for connection & start a Thread
-            The Listener implements Runnable, creates a thread for connecting the game server,
-             Code for showing the 'Game Hall':    LoginController.getInstance().showScene;
-
-        */
+        // TODO - add a listener for connection & start a Thread
+        // The Listener implements Runnable, creates a thread for connecting the game server,
+        // code for showing the 'Game Hall':   " LoginController.getInstance().showHall; "
+        // uncomment "showHall()" below after implementing Listener
+        showHall();
 
         this.scene = new Scene(window);
     }
+
+    public void showHall() {
+        Platform.runLater(() -> {
+            Stage stage = (Stage) hostAddressTF.getScene().getWindow();
+            stage.setResizable(false);
+            stage.setWidth(1100);
+            stage.setHeight(800);
+
+            stage.setOnCloseRequest((WindowEvent e) -> {
+                Platform.exit();
+                System.exit(0);
+            });
+            stage.setScene(this.scene);
+            stage.centerOnScreen();
+            hallController.setUsernameLB(usernameTF.getText());
+
+        });
+
+    }
+
+
 }
