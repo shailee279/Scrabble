@@ -1,11 +1,17 @@
 package com.view.hall;
 
 import com.Game;
+import com.model.player.Player;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
@@ -19,12 +25,17 @@ import java.util.ResourceBundle;
 public class HallController implements Initializable {
 
     @FXML private BorderPane borderPane;
-    @FXML private Label usernameLB;
+    @FXML private TableView<Player> playerList;
+    @FXML private TableColumn username;
+    @FXML private TableColumn status;
+    public static ObservableList<Player> data = FXCollections.observableArrayList();
+
     private double xOffset;
     private double yOffset;
 
-    public void setUsernameLB(String username) {
-        this.usernameLB.setText(username);
+    public void updateStatus(Player player) {
+        data.add(player);
+        playerList.setItems(data);
     }
 
     @Override
@@ -47,6 +58,9 @@ public class HallController implements Initializable {
             borderPane.setCursor(Cursor.DEFAULT);
         });
         //</editor-fold>
+
+        username.setCellValueFactory(new PropertyValueFactory<>("username"));
+        status.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 
     // Terminates Application
