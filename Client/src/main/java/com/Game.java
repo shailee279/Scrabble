@@ -24,7 +24,6 @@ public class Game extends Application {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/login.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
         Scene scene = new Scene(root, LoginWidth, LoginHeight);
-        primaryStage.setTitle("Team : Infinite Monkey Theorem");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();

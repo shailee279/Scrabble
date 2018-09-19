@@ -6,12 +6,10 @@ import com.view.table.TableController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
@@ -20,6 +18,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -55,8 +55,9 @@ public class HallController implements Initializable {
     public static TableController tableController;
     private double xOffset;
     private double yOffset;
-    private Scene scene;
+    public Scene scene;
     private static HallController instance;
+    private static Stage stage;
 
     public HallController() {
         instance = this;
@@ -64,6 +65,10 @@ public class HallController implements Initializable {
 
     public static HallController getInstance() {
         return instance;
+    }
+
+    public static Stage getStage() {
+        return stage;
     }
 
     public void updateStatus(Player player) {
@@ -120,6 +125,7 @@ public class HallController implements Initializable {
         // comment "showTable()" below after implementing Listener
         showTable();
 
+        Game.getPrimaryStage().hide();
         this.scene = new Scene(window);
 
 
@@ -127,13 +133,15 @@ public class HallController implements Initializable {
 
     private void showTable(){
         Platform.runLater(() -> {
-            Stage stage = (Stage) borderPane.getScene().getWindow();
+            stage = new Stage();
             stage.setResizable(false);
             stage.setWidth(TableController.TableWidth);
             stage.setHeight(TableController.TableHeight);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setOnCloseRequest((WindowEvent e) -> Game.getPrimaryStage().show());
             stage.setScene(this.scene);
             stage.centerOnScreen();
-
+            stage.show();
         });
     }
 }

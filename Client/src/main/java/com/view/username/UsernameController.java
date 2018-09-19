@@ -190,10 +190,10 @@ public class UsernameController implements Initializable {
             stage.setWidth(HallController.HallWidth);
             stage.setHeight(HallController.HallHeight);
 
-            stage.setOnCloseRequest((WindowEvent e) -> {
-                Platform.exit();
-                System.exit(0);
-            });
+//            stage.setOnCloseRequest((WindowEvent e) -> {
+//                Platform.exit();
+//                System.exit(0);
+//            });
             stage.setScene(this.scene);
             stage.centerOnScreen();
             Player player = new Player(usernameTF.getText(),"Online");
