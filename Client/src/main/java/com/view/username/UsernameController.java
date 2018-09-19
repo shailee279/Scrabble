@@ -1,7 +1,7 @@
-package com.view.login;
+package com.view.username;
 
 import com.Game;
-import com.view.username.UsernameController;
+import com.view.hall.HallController;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -21,7 +21,6 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -29,29 +28,18 @@ import java.util.ResourceBundle;
 /**
  * @author xuwang < xuwang2@student.unimelb.edu.au >
  * @id 979895
- * @date 2018/9/18 1:13
+ * @date 2018/9/19 14:21
  */
-public class LoginController implements Initializable {
+public class UsernameController implements Initializable {
 
     @FXML private BorderPane borderPane;
-    @FXML private TextField hostAddressTF;
-    @FXML private TextField portNumberTF;
+    @FXML private TextField usernameTF;
+    public static HallController hallController;
     private double xOffset;
     private double yOffset;
-    private static final int LoginWidth = Game.LoginWidth;
-    private static final int LoginHeight = Game.LoginHeight;
-    public static UsernameController usernameController;
-    private static LoginController instance;
     private Scene scene;
-
-
-    public LoginController() {
-        instance = this;
-    }
-
-    public static LoginController getInstance() {
-        return instance;
-    }
+    private static final int NameWidth = 600;
+    private static final int NameHeight = 400;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -60,7 +48,7 @@ public class LoginController implements Initializable {
         borderPane.setOnMousePressed(event -> {
             xOffset = Game.getPrimaryStage().getX() - event.getScreenX();
             yOffset = Game.getPrimaryStage().getY() - event.getScreenY();
-            borderPane.setCursor(Cursor.CLOSED_HAND);
+            borderPane.setCursor(javafx.scene.Cursor.CLOSED_HAND);
         });
 
         borderPane.setOnMouseDragged(event -> {
@@ -81,6 +69,7 @@ public class LoginController implements Initializable {
             numberOfSquares--;
         }
     }
+
     // Background square animation
     //<editor-fold defaultstate="collapsed" desc=" Background animation">
     /* This method is used to generate the animation on the main window.
@@ -91,8 +80,8 @@ public class LoginController implements Initializable {
         Random rand = new Random();
         int sizeOfSqaure = rand.nextInt(50) + 1;
         int speedOfSqaure = rand.nextInt(10) + 5;
-        int startXPoint = rand.nextInt(LoginHeight);
-        int startYPoint = rand.nextInt(LoginWidth);
+        int startXPoint = rand.nextInt(NameHeight);
+        int startYPoint = rand.nextInt(NameWidth);
         int direction = rand.nextInt(5) + 1;
 
         KeyValue moveXAxis = null;
@@ -103,34 +92,34 @@ public class LoginController implements Initializable {
             case 1 :
                 // MOVE LEFT TO RIGHT
                 r1 = new Rectangle(0,startYPoint,sizeOfSqaure,sizeOfSqaure);
-                moveXAxis = new KeyValue(r1.xProperty(), LoginWidth -  sizeOfSqaure);
+                moveXAxis = new KeyValue(r1.xProperty(), NameWidth -  sizeOfSqaure);
                 break;
             case 2 :
                 // MOVE TOP TO BOTTOM
                 r1 = new Rectangle(startXPoint,0,sizeOfSqaure,sizeOfSqaure);
-                moveYAxis = new KeyValue(r1.yProperty(), LoginHeight - sizeOfSqaure);
+                moveYAxis = new KeyValue(r1.yProperty(), NameHeight - sizeOfSqaure);
                 break;
             case 3 :
                 // MOVE LEFT TO RIGHT, TOP TO BOTTOM
                 r1 = new Rectangle(startXPoint,0,sizeOfSqaure,sizeOfSqaure);
-                moveXAxis = new KeyValue(r1.xProperty(), LoginWidth -  sizeOfSqaure);
-                moveYAxis = new KeyValue(r1.yProperty(), LoginHeight - sizeOfSqaure);
+                moveXAxis = new KeyValue(r1.xProperty(), NameWidth -  sizeOfSqaure);
+                moveYAxis = new KeyValue(r1.yProperty(), NameHeight - sizeOfSqaure);
                 break;
             case 4 :
                 // MOVE BOTTOM TO TOP
-                r1 = new Rectangle(startXPoint,LoginWidth-sizeOfSqaure ,sizeOfSqaure,sizeOfSqaure);
+                r1 = new Rectangle(startXPoint,NameWidth-sizeOfSqaure ,sizeOfSqaure,sizeOfSqaure);
                 moveYAxis = new KeyValue(r1.xProperty(), 0);
                 break;
             case 5 :
                 // MOVE RIGHT TO LEFT
-                r1 = new Rectangle(LoginHeight-sizeOfSqaure,startYPoint,sizeOfSqaure,sizeOfSqaure);
+                r1 = new Rectangle(NameHeight-sizeOfSqaure,startYPoint,sizeOfSqaure,sizeOfSqaure);
                 moveXAxis = new KeyValue(r1.xProperty(), 0);
                 break;
             case 6 :
                 //MOVE RIGHT TO LEFT, BOTTOM TO TOP
                 r1 = new Rectangle(startXPoint,0,sizeOfSqaure,sizeOfSqaure);
-                moveXAxis = new KeyValue(r1.xProperty(), LoginWidth -  sizeOfSqaure);
-                moveYAxis = new KeyValue(r1.yProperty(), LoginHeight - sizeOfSqaure);
+                moveXAxis = new KeyValue(r1.xProperty(), NameWidth -  sizeOfSqaure);
+                moveYAxis = new KeyValue(r1.yProperty(), NameHeight - sizeOfSqaure);
                 break;
 
             default:
@@ -161,28 +150,31 @@ public class LoginController implements Initializable {
         Game.getPrimaryStage().setIconified(true);
     }
 
-    public void loginButtonAction() throws IOException{
-        String hostname = hostAddressTF.getText();
-        int port = Integer.parseInt(portNumberTF.getText());
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/username.fxml"));
-        Parent window = (Pane) fxmlLoader.load();
-        usernameController =  fxmlLoader.getController();
-        // TODO - add a listener for connection & start a Thread
-        // The Listener implements Runnable, creates a thread for connecting the game server,
-        // code for showing the 'Username Scene':   " LoginController.getInstance().showUsernameScene(); "
-        // comment "showUsername()" below after implementing Listener
-        showUsernameScene();
-
-        this.scene = new Scene(window);
+    public void randomUsername(){
+        // TODO - random username
     }
 
-    public void showUsernameScene() {
+    public void setUsername() throws Exception{
+        String username = usernameTF.getText();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/hall.fxml"));
+        Parent window = (Pane) fxmlLoader.load();
+        hallController = fxmlLoader.getController();
+
+        //TODO - check duplicate username
+        // code for showing the 'Game Hall Scene':   " LoginController.getInstance().showHall(); "
+        // comment "showHall()" below
+        showHall();
+
+        this.scene = new Scene(window);
+
+    }
+
+    public void showHall() {
         Platform.runLater(() -> {
-            Stage stage = (Stage) hostAddressTF.getScene().getWindow();
+            Stage stage = (Stage) usernameTF.getScene().getWindow();
             stage.setResizable(false);
-            stage.setWidth(600);
-            stage.setHeight(400);
+            stage.setWidth(1100);
+            stage.setHeight(800);
 
             stage.setOnCloseRequest((WindowEvent e) -> {
                 Platform.exit();
@@ -190,10 +182,8 @@ public class LoginController implements Initializable {
             });
             stage.setScene(this.scene);
             stage.centerOnScreen();
+            hallController.setUsernameLB(usernameTF.getText());
 
         });
-
     }
-
-
 }

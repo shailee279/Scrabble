@@ -23,7 +23,6 @@
         <rowConstraints>
           <RowConstraints maxHeight="195.0" minHeight="0.0" prefHeight="31.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="205.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="430.0" minHeight="0.0" prefHeight="63.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="430.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="430.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="430.0" minHeight="4.0" prefHeight="53.0" vgrow="SOMETIMES" />
@@ -50,29 +49,20 @@
                   </Button>
                </children>
             </HBox>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="162.0" text="Username:" textAlignment="RIGHT" textFill="#f89406" GridPane.rowIndex="2">
+            <Label alignment="BOTTOM_CENTER" prefHeight="74.0" prefWidth="248.0" text="Server Address" textFill="#f89406" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="21.0" />
                </font></Label>
-            <TextField fx:id="usernameTF" prefHeight="38.0" prefWidth="206.0" promptText="Please enter your name" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="20.0" right="20.0" />
-               </GridPane.margin>
-            </TextField>
-            <Label alignment="BOTTOM_CENTER" prefHeight="74.0" prefWidth="248.0" text="Server Address" textFill="#f89406" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <font>
-                  <Font size="21.0" />
-               </font></Label>
-            <Button id="connectBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="40.0" prefWidth="121.0" stylesheets="@../css/global.css" text="Connect" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <Button id="connectBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="40.0" prefWidth="121.0" stylesheets="@../css/global.css" text="Connect" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin></Button>
-            <TextField fx:id="hostAddressTF" prefHeight="40.0" prefWidth="246.0" text="localhost" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id="hostAddressTF" prefHeight="40.0" prefWidth="246.0" text="localhost" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="portNumberTF" prefHeight="40.0" prefWidth="246.0" text="8888" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <TextField fx:id="portNumberTF" prefHeight="40.0" prefWidth="246.0" text="8888" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -80,12 +70,12 @@
                   <Insets left="20.0" right="20.0" />
                </GridPane.margin>
             </TextField>
-            <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="177.0" text="Host:" textAlignment="RIGHT" textFill="#f89406" GridPane.rowIndex="4">
+            <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="177.0" text="Host:" textAlignment="RIGHT" textFill="#f89406" GridPane.rowIndex="3">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="182.0" text="Port:" textAlignment="RIGHT" textFill="#f89406" GridPane.rowIndex="5">
+            <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="182.0" text="Port:" textAlignment="RIGHT" textFill="#f89406" GridPane.rowIndex="4">
                <font>
                   <Font size="21.0" />
                </font>
