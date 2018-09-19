@@ -70,7 +70,7 @@
                     </rowConstraints>
                      <children>
                          <!--table 1 - 3-->
-                         <Button fx:id="1" alignment="CENTER" onAction="#enterTable" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css">
+                         <Button alignment="CENTER" onAction="#handleButton1" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css">
                              <cursor>
                                  <Cursor fx:constant="HAND" />
                              </cursor>
@@ -79,7 +79,7 @@
                            </GridPane.margin>
                          </Button>
                          <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="240.0" text="- 1 -" GridPane.rowIndex="1" />
-                         <Button fx:id="2" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.columnIndex="1">
+                         <Button alignment="CENTER" onAction="#handleButton2" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.columnIndex="1">
                              <cursor>
                                  <Cursor fx:constant="HAND" />
                              </cursor>
@@ -88,7 +88,7 @@
                              </GridPane.margin>
                          </Button>
                          <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="240.0" text="- 2 -" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-                         <Button fx:id="3" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.columnIndex="2">
+                         <Button alignment="CENTER" onAction="#handleButton3" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.columnIndex="2">
                              <cursor>
                                  <Cursor fx:constant="HAND" />
                              </cursor>
@@ -100,7 +100,7 @@
 
 
                          <!--table 4 - 6-->
-                         <Button fx:id="4" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.rowIndex="2">
+                         <Button alignment="CENTER" onAction="#handleButton4" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.rowIndex="2">
                              <cursor>
                                  <Cursor fx:constant="HAND" />
                              </cursor>
@@ -109,7 +109,7 @@
                              </GridPane.margin>
                          </Button>
                          <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="240.0" text="- 4 -" GridPane.rowIndex="3"/>
-                         <Button fx:id="5" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                         <Button alignment="CENTER" onAction="#handleButton5" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
                              <cursor>
                                  <Cursor fx:constant="HAND" />
                              </cursor>
@@ -118,7 +118,7 @@
                              </GridPane.margin>
                          </Button>
                          <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="240.0" text="- 5 -" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-                         <Button fx:id="6" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                         <Button alignment="CENTER" onAction="#handleButton6" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.columnIndex="2" GridPane.rowIndex="2">
                              <cursor>
                                  <Cursor fx:constant="HAND" />
                              </cursor>
@@ -129,7 +129,7 @@
                          <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="240.0" text="- 6 -" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
 
                          <!--table 7 - 9-->
-                         <Button fx:id="7" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.rowIndex="4">
+                         <Button alignment="CENTER" onAction="#handleButton7" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.rowIndex="4">
                              <cursor>
                                  <Cursor fx:constant="HAND" />
                              </cursor>
@@ -138,7 +138,7 @@
                              </GridPane.margin>
                          </Button>
                          <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="240.0" text="- 7 -" GridPane.rowIndex="5" />
-                         <Button fx:id="8" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                         <Button alignment="CENTER" onAction="#handleButton8" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.columnIndex="1" GridPane.rowIndex="4">
                              <cursor>
                                  <Cursor fx:constant="HAND" />
                              </cursor>
@@ -147,7 +147,7 @@
                              </GridPane.margin>
                          </Button>
                          <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="240.0" text="- 8 -" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
-                         <Button fx:id="9" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                         <Button alignment="CENTER" onAction="#handleButton9" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.columnIndex="2" GridPane.rowIndex="4">
                              <cursor>
                                  <Cursor fx:constant="HAND" />
                              </cursor>
@@ -159,7 +159,7 @@
 
 
                          <!--table 10 - 12-->
-                         <Button fx:id="10" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.rowIndex="6">
+                         <Button alignment="CENTER" onAction="#handleButton10" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.rowIndex="6">
                              <cursor>
                                  <Cursor fx:constant="HAND" />
                              </cursor>
@@ -168,7 +168,7 @@
                              </GridPane.margin>
                          </Button>
                          <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="240.0" text="- 10 -" GridPane.rowIndex="7" />
-                         <Button fx:id="11" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                         <Button alignment="CENTER" onAction="#handleButton11" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.columnIndex="1" GridPane.rowIndex="6">
                              <cursor>
                                  <Cursor fx:constant="HAND" />
                              </cursor>
@@ -177,7 +177,7 @@
                              </GridPane.margin>
                          </Button>
                          <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="240.0" text="- 11 -" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
-                         <Button fx:id="12" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                         <Button alignment="CENTER" onAction="#handleButton12" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="emptyTable" stylesheets="@../css/global.css" GridPane.columnIndex="2" GridPane.rowIndex="6">
                              <cursor>
                                  <Cursor fx:constant="HAND" />
                              </cursor>

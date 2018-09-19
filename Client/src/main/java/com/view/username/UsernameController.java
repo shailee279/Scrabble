@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -166,8 +167,9 @@ public class UsernameController implements Initializable {
         // TODO - random username
     }
 
-    public void setUsername() throws Exception{
+    public void setUsername() throws IOException {
         String username = usernameTF.getText();
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/hall.fxml"));
         Parent window = (Pane) fxmlLoader.load();
         hallController = fxmlLoader.getController();
