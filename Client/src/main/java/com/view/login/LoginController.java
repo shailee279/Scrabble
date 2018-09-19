@@ -181,8 +181,8 @@ public class LoginController implements Initializable {
         Platform.runLater(() -> {
             Stage stage = (Stage) hostAddressTF.getScene().getWindow();
             stage.setResizable(false);
-            stage.setWidth(600);
-            stage.setHeight(400);
+            stage.setWidth(UsernameController.NameWidth);
+            stage.setHeight(UsernameController.NameHeight);
 
             stage.setOnCloseRequest((WindowEvent e) -> {
                 Platform.exit();

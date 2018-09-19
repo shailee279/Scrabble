@@ -39,8 +39,8 @@ public class UsernameController implements Initializable {
     private double xOffset;
     private double yOffset;
     private Scene scene;
-    private static final int NameWidth = 600;
-    private static final int NameHeight = 400;
+    public static final int NameWidth = 600;
+    public static final int NameHeight = 400;
     private static UsernameController instance;
 
 
@@ -185,8 +185,8 @@ public class UsernameController implements Initializable {
         Platform.runLater(() -> {
             Stage stage = (Stage) usernameTF.getScene().getWindow();
             stage.setResizable(false);
-            stage.setWidth(1100);
-            stage.setHeight(800);
+            stage.setWidth(HallController.HallWidth);
+            stage.setHeight(HallController.HallHeight);
 
             stage.setOnCloseRequest((WindowEvent e) -> {
                 Platform.exit();

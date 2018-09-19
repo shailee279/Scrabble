@@ -28,6 +28,8 @@ public class HallController implements Initializable {
     @FXML private TableView<Player> playerList;
     @FXML private TableColumn username;
     @FXML private TableColumn status;
+    public static final int HallWidth = 1100;
+    public static final int HallHeight = 800;
     public static ObservableList<Player> data = FXCollections.observableArrayList();
 
     private double xOffset;
@@ -74,4 +76,10 @@ public class HallController implements Initializable {
         Game.getPrimaryStage().setIconified(true);
     }
 
+    public void enterTable() {
+        //TODO - actions after clicking the table
+
+
+
+    }
 }

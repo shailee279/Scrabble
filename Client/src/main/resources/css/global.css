@@ -68,7 +68,7 @@
 #dice{
     -fx-graphic: url("../images/dice.png");
     -fx-background-color:transparent;
-    /*-fx-opacity: 1;*/
+    -fx-opacity: 1;
 }
 #dice:hover{
     -fx-cursor: hand;
@@ -82,4 +82,27 @@
     -fx-background-color: linear-gradient(to bottom, #ffe49e 0%,#ffb700 3%,#ffad00 35%,#ff9000 97%,#e27f00 100%);
     -fx-font-family: 'Open Sans', sans-serif;
     -fx-cursor: hand;
+}
+
+.emptyTable{
+    -fx-graphic: url("../images/table_empty.png");
+    -fx-background-color:transparent;
+    -fx-opacity: 1;
+}
+.emptyTable:hover{
+    -fx-cursor: hand;
+    -fx-opacity: 0.5;
+}
+.emptyTable:pressed{
+    -fx-opacity: 1;
+    -fx-font-family: 'Open Sans', sans-serif;
+    -fx-cursor: hand;
+}
+.fullTable{
+    -fx-graphic: url("../images/table_full.png");
+    -fx-background-color:transparent;
+    -fx-opacity: 1;
+}
+.fullTable:hover{
+    -fx-cursor: pointer;
 }
