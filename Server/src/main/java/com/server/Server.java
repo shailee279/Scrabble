@@ -1,12 +1,9 @@
 package com.server;
 import java.net.*;
 import java.io.*;
-import java.util.*;
 
-import Game.GameRoom;
-import Message.Message;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.message.Message;
+import com.game.GameRoom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,75 +13,63 @@ import org.slf4j.LoggerFactory;
  * @date 2018/9/18 15:15
  */
 public class Server {
+
     /* Setting up variables */
 
-    // userlist
-    // gamelist
-    // namelist
-    private Socket clientSocket = null;
-    private ServerSocket listeningSocket = null;
-    private static Server Server = new Server();
-    private int clientNum = 0; // use to track client number
-    private static final int PORT = 8888;
+    // use to track client number
+    private static int clientNum = 0;
+    private static int PORT = 8888;
     static Logger logger = LoggerFactory.getLogger(Server.class);
 
-
     public static void main(String[] args) throws Exception {
-        logger.info("The game server is running.");
-        ServerSocket listener = new ServerSocket(PORT);
-
-
-        int portNumber = 1234;
 
         try {
-            if (args.length == 2) {
-                portNumber = Integer.parseInt(args[0]);
-            } else if (args.length != 0) {
-                System.out.println("The system will using the default setting.");
+            if (args.length == 1) {
+                PORT = Integer.parseInt(args[0]);
+            } else if (args.length == 0) {
+                logger.info("The system will using the default setting.");
             } else {
-                System.out.println("usage: java –jar DictionaryServer.jar <port> <dictionary-file>");
+                logger.error(" Usage: java –jar Server.jar </port/> ");
                 return;
             }
         }catch (Exception e){
             e.printStackTrace();
         }
 
+        //1. Open the server
+        ServerSocket listeningSocket = new ServerSocket(PORT);
+        logger.info("The game server is running on port " + PORT);
+        logger.info("Waiting for a connection...");
 
-        try{
-
-            Server.listeningSocket = new ServerSocket(portNumber);
-
+        try {
             while (true) {
 
-                System.out.println("Server listening on port 1234 for a connection");
+                // 2. Wait and listen for new connections
+                Socket clientSocket = listeningSocket.accept();
+                clientNum++;
 
-                // 2. wait
-                Server.clientSocket = Server.listeningSocket.accept();
-                Server.clientNum++;
+                //TODO - output to UI
+                String uiOutput = "Client number" + clientNum + " has connected to the server";
+                logger.info("Client connection number: " + clientNum + " .");
+                logger.info("Connected to client on port "+ clientSocket.getInetAddress().getHostName()+ clientSocket.getPort());
 
-                String uiOutput = "Client number" + Server.clientNum + " has connected to the server";
-                System.out.println("Client connection number " + Server.clientNum + " accepted:");
-                System.out.println("Remote Port: " + Server.clientSocket.getPort());
-                System.out.println("Remote Hostname: " + Server.clientSocket.getInetAddress().getHostName());
-                System.out.println("Local Port: " + Server.clientSocket.getLocalPort());
-                // a thread per connection
-
-                EachConnection newConnection = new EachConnection(Server.clientSocket,Server.clientNum);
+                //3. One thread per connection
+                EachConnection newConnection = new EachConnection(clientSocket,clientNum);
                 Thread eachConnection = new Thread(newConnection);
                 eachConnection.start();
 
-                //Update the server state to reflect the new connected client
+                // Update the server state to reflect the new connected client
                 ServerState.getInstance().clientConnected(newConnection);
-                System.out.println(ServerState.getInstance().getConnectedClients().size());
+//                System.out.println(ServerState.getInstance().getConnectedClients().size());
             }
-        }catch (SocketException e){
-            System.out.println("The listening socket has closed!");
-        }catch (IOException e) {
+        } catch (SocketException so){
+            logger.error("The listening socket has closed!");
+        } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if (Server.listeningSocket != null){
+        } finally {
+            if (listeningSocket != null){
                 try{
-                    Server.listeningSocket.close();
+                    listeningSocket.close();
                 } catch (IOException e){
                     e.printStackTrace();
                 }

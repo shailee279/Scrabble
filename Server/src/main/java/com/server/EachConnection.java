@@ -1,82 +1,79 @@
 package com.server;
 
+import com.message.Message;
+import com.message.MessageType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
-import Message.Message;
 
 public class EachConnection implements Runnable {
-    private Socket clientSocket = null;
-    private ServerSocket listeningSocket = null;
+
+    private Socket clientSocket;
     private static Server Server = new Server();
     private int clientNum;
     private InputStream in;
     private OutputStream out;
     private ObjectInputStream ois;
     private ObjectOutputStream oos;
-    private Message clientMsg;
     private String clientName;
+    static Logger logger = LoggerFactory.getLogger(EachConnection.class);
+
 
 
     public EachConnection(Socket clientSocket, int clientNum) {
-        try {
-            this.clientSocket = clientSocket;
-            this.in = clientSocket.getInputStream();
-            this.ois = new ObjectInputStream(in);
-
-            this.out = clientSocket.getOutputStream();
-            this.oos = new ObjectOutputStream(out);
-
-            this.clientNum = clientNum;
-        } catch (IOException e){
-            e.printStackTrace();
-        }
+        this.clientSocket = clientSocket;
+        this.clientNum = clientNum;
     }
 
 
     // listening from client message
     @Override
     public void run() {
+
         try {
-            while (true) {
-                /*
-                clientMsg = (Message) ois.readObject();
+            this.in = clientSocket.getInputStream();
+            this.ois = new ObjectInputStream(in);
 
-                //clientMsg.getMessageType().equals("NameRequest")
+            this.out = clientSocket.getOutputStream();
+            this.oos = new ObjectOutputStream(out);
+
+            while (clientSocket.isConnected()){
+                Message clientMsg = (Message) ois.readObject();
+                clientMsg.setMessageType(MessageType.NameRequest);
                 nameCheck(clientMsg);
-                // Join
-                join(clientMsg);
-                //ingame
 
-                if (mType.equals("ready")) {
-                    ready();
-                } else if (mType.equals("gameContent")) {
-                    gameContent();
-                } else if (mType.equals("voting")) {
-                    voting();
-                } else if (mType.equals("pass")) {
+                //Join
+                join(clientMsg);
+
+                //Online
+                //TODO - Ethan & Eric
+                switch (clientMsg.getMessageType()){
+                    case READY:
+//                        ready();
+                        break;
+                    case GAME_CONTENT:
+//                        gameContent();
+                        break;
+                    case VOTING:
+//                        voting();
+                        break;
+                    case PASS:
+                        break;
                 }
-                */
+
+
             }
+
+        } catch (SocketException socketException){
+            logger.info("Client on port "+clientSocket.getPort()+" exited.");
+            //TODO clientNum -1
+        } catch (Exception e){
+            e.printStackTrace();
         }
-        catch(SocketException ex){
-            ex.printStackTrace();
-        }catch(EOFException e){
-            e.printStackTrace();
-        } catch(IOException e){
-            e.printStackTrace();
-        } catch(ClassNotFoundException e){
-            e.printStackTrace();
-        } finally{
-            if (listeningSocket != null) {
-                try {
-                    listeningSocket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+
     }
 
 

@@ -1,4 +1,4 @@
-package Game;
+package com.game;
 
 public class ScrabblePlayer {
     private String playerId;

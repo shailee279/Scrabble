@@ -1,6 +1,6 @@
-package Game;
+package com.game;
 
-import Message.Message;
+import com.message.Message;
 
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -34,7 +34,7 @@ public class GameRoom implements Runnable{
     public void run() {
         while (true) {
             /*
-            // m = (Message) ois.readObject();
+            // m = (message) ois.readObject();
             // String mType = m.getType();
             String mType = "";
 
@@ -113,9 +113,9 @@ public class GameRoom implements Runnable{
     }
 
     private void gameContent(Message m){
-        Character Gamecharacter = m.getGamecharacter();
-        String Gamelocation = m.getGamelocation();
-        String Gameword = m.getGameword();
+//        Character Gamecharacter = m.getGamecharacter();
+//        String Gamelocation = m.getGamelocation();
+//        String Gameword = m.getGameword();
 
         // send message to other players
         for (ScrabblePlayer scrabblePlayer : playerList) {

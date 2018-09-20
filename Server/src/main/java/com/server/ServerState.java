@@ -3,10 +3,10 @@ package com.server;
 import java.util.ArrayList;
 import java.util.List;
 
-import Game.GameRoom;
-import Message.Message;
+import com.message.Message;
+import com.game.GameRoom;
 
-// add gamelist !!!
+// TODO - add gamelist !!!
 public class ServerState {
 
     private static ServerState instance;
