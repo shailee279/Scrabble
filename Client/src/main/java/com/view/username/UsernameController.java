@@ -165,6 +165,7 @@ public class UsernameController implements Initializable {
 
     public void randomUsername(){
         // TODO - random username
+        usernameTF.setText("happy_yasuo");
     }
 
     public void setUsername() throws IOException {

@@ -1,6 +1,7 @@
 package com.view.login;
 
 import com.Game;
+import com.model.login.LoginListener;
 import com.view.username.UsernameController;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -172,7 +173,10 @@ public class LoginController implements Initializable {
         // The Listener implements Runnable, creates a thread for connecting the game server,
         // code for showing the 'Username Scene':   " LoginController.getInstance().showUsernameScene(); "
         // comment "showUsername()" below after implementing Listener
-        showUsernameScene();
+//        showUsernameScene();
+        LoginListener loginListener = new LoginListener(hostname,port,usernameController);
+        Thread thread = new Thread(loginListener);
+        thread.start();
 
         this.scene = new Scene(window);
     }
