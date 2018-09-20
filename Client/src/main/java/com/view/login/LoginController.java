@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -179,6 +180,17 @@ public class LoginController implements Initializable {
         thread.start();
 
         this.scene = new Scene(window);
+    }
+
+    public void loginFailure(String message){
+        Platform.runLater(()-> {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!");
+            alert.setHeaderText(message);
+            alert.setContentText("Please check for firewall issues and check if the server is running.");
+            alert.showAndWait();
+        });
+
     }
 
     public void showUsernameScene() {

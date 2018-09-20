@@ -1,5 +1,6 @@
 package com.model.login;
 
+import com.view.login.LoginController;
 import com.view.username.UsernameController;
 
 import java.io.IOException;
@@ -27,8 +28,10 @@ public class LoginListener implements Runnable {
     public void run() {
         try{
             socket = new Socket(host, port);
+            LoginController.getInstance().showUsernameScene();
             //TODO
         }catch (IOException e){
+            LoginController.getInstance().loginFailure("Could not connect to server");
             e.printStackTrace();
         }
     }
