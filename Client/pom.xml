@@ -69,7 +69,7 @@
                     <archive>
                         <!-- MainClass in mainfest make a executable jar -->
                         <manifest>
-                            <mainClass>Game</mainClass>
+                            <mainClass>com.Game</mainClass>
                         </manifest>
                         <manifestEntries>
                             <Class-Path>.</Class-Path>
