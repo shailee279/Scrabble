@@ -3,7 +3,6 @@ package com.server;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.message.Message;
 import com.game.GameRoom;
 
 // TODO - add gamelist !!!

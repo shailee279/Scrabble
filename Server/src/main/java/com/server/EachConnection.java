@@ -1,7 +1,7 @@
 package com.server;
 
-import com.message.Message;
-import com.message.MessageType;
+import com.messages.Message;
+import com.messages.MessageType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +12,7 @@ import java.net.SocketException;
 public class EachConnection implements Runnable {
 
     private Socket clientSocket;
-    private static Server Server = new Server();
+    private static Server server;
     private int clientNum;
     private InputStream in;
     private OutputStream out;
@@ -29,28 +29,28 @@ public class EachConnection implements Runnable {
     }
 
 
-    // listening from client message
+    // listening from client messages
     @Override
     public void run() {
 
         try {
-            this.in = clientSocket.getInputStream();
-            this.ois = new ObjectInputStream(in);
+            in = clientSocket.getInputStream();
+            ois = new ObjectInputStream(in);
 
-            this.out = clientSocket.getOutputStream();
-            this.oos = new ObjectOutputStream(out);
+            out = clientSocket.getOutputStream();
+            oos = new ObjectOutputStream(out);
 
             while (clientSocket.isConnected()){
                 Message clientMsg = (Message) ois.readObject();
                 clientMsg.setMessageType(MessageType.NameRequest);
                 nameCheck(clientMsg);
 
-                //Join
-                join(clientMsg);
-
-                //Online
+                //InGame
                 //TODO - Ethan & Eric
                 switch (clientMsg.getMessageType()){
+                    case JOIN_GAME:
+                        join(clientMsg);
+                        break;
                     case READY:
 //                        ready();
                         break;
@@ -82,7 +82,7 @@ public class EachConnection implements Runnable {
         Message m2Client = new Message();
     /*
     if valid
-       m2Client sets userlist,gamelist and a confirm message
+       m2Client sets userlist,gamelist and a confirm messages
        write
     else
         set non-valid m
@@ -91,16 +91,17 @@ public class EachConnection implements Runnable {
     }
 
     private void join(Message m){
+        server = new Server();
         // game id
         // check list
         //check numOfPlayer
         //if < 4
         //change status
         //player.setStatus("inroom");
-        Server.addNewPlayer(m);
+        server.addNewPlayer(m);
         // if number ==0;
         // server create a thread "game"
-        Server.createGameThread(m);
+        server.createGameThread(m);
         // set non-valid m
         //
     }

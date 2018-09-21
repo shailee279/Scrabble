@@ -121,7 +121,7 @@ public class HallController implements Initializable {
         tableController.title.setText(tableNumber);
 
         // TODO - enter the table (?)
-        // code for showing the 'Game Table':   " HallController.getInstance().showTable(); "
+        // code for showing the 'game Table':   " HallController.getInstance().showTable(); "
         // comment "showTable()" below after implementing Listener
         showTable();
 

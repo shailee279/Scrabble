@@ -2,51 +2,61 @@ package com.messages;
 
 import java.io.Serializable;
 
-/**
- * @author xuwang < xuwang2@student.unimelb.edu.au >
- * @id 979895
- * @date 2018/8/19 19:49
- */
-public class Message implements Serializable {
-    private String msg;
-    private String def;
-    private MessageType type;
-    private Status status;
+public class Message implements Serializable{
 
-    public Message() {
+    private MessageType messageType;
+    private Character gameCharacter;
+    private String gameLocation;
+    private String gameWord;
+    private String clientName;
+    private int tableId;
+
+    public MessageType getMessageType() {
+        return messageType;
     }
 
-    public String getMsg() {
-        return msg;
+    public void setMessageType(MessageType messageType) {
+        this.messageType = messageType;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public Character getGameCharacter() {
+        return gameCharacter;
     }
 
-    public String getDef() {
-        return def;
+    public void setGameCharacter(Character gameCharacter) {
+        this.gameCharacter = gameCharacter;
     }
 
-    public void setDef(String def) {
-        this.def = def;
+    public String getGameLocation() {
+        return gameLocation;
     }
 
-    public MessageType getType() {
-        return type;
+    public void setGameLocation(String gameLocation) {
+        this.gameLocation = gameLocation;
     }
 
-    public void setType(MessageType type) {
-        this.type = type;
+    public String getGameWord() {
+        return gameWord;
     }
 
-    public Status getStatus() {
-        return status;
+    public void setGameWord(String gameWord) {
+        this.gameWord = gameWord;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public String getClientName() {
+        return clientName;
     }
 
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public int getTableId() {
+        return tableId;
+    }
+
+    public void setTableId(int tableId) {
+        this.tableId = tableId;
+    }
 
 }

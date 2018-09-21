@@ -1,6 +1,7 @@
 package com.game;
 
-import com.message.Message;
+import com.messages.Message;
+import com.messages.PlayerStatus;
 
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -8,33 +9,38 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 
 public class GameRoom implements Runnable{
-    private static int MAXIMUMPLAYERNUMBER = 100;              // assuming there are up to 100 players
-    private static int MINIMUMPLAYERNUMBER = 2;
-    private int numOfPlayer = 0;                               // tracking number of total players
-    private ScrabblePlayer[] playerList = new ScrabblePlayer[MAXIMUMPLAYERNUMBER];
+    // assuming there are up to 100 players
+    private static int MAXIMUM_PLAYER_NUMBER = 100;
+    private static int MINIMUM_PLAYER_NUMBER = 2;
+    // tracking number of total players in one game room
+    private int numOfPlayer;
+    private int tableId;
+    private ScrabblePlayer[] playerList = new ScrabblePlayer[MAXIMUM_PLAYER_NUMBER];
     private InputStream in;
     private OutputStream out;
     private ObjectInputStream ois;
     private ObjectOutputStream oos;
     private int spaceRemain = 400;
-    private int gameId;
 
-    public GameRoom(String playerName,int gameId) {
-        this.playerList[numOfPlayer] = new ScrabblePlayer(playerName,"inroom");
+    public GameRoom(String playerName,int tableId) {
+        this.playerList[numOfPlayer] = new ScrabblePlayer(playerName,PlayerStatus.IN_ROOM);
         this.numOfPlayer +=1;
-        this.gameId = gameId;
+        this.tableId = tableId;
     }
 
+    public int getTableId() {
+        return tableId;
+    }
     public int getNumOfPlayer() {
         return numOfPlayer;
     }
 
-    // listening from clients' game info
+    // TODO - listening from clients' game info
     @Override
     public void run() {
         while (true) {
             /*
-            // m = (message) ois.readObject();
+            // m = (messages) ois.readObject();
             // String mType = m.getType();
             String mType = "";
 
@@ -58,7 +64,7 @@ public class GameRoom implements Runnable{
     // when click ready button
 
     private void addPlayer(Message m){
-        this.playerList[numOfPlayer] = new ScrabblePlayer(m.getClientName(),"inroom");
+        this.playerList[numOfPlayer] = new ScrabblePlayer(m.getClientName(), PlayerStatus.IN_ROOM);
         this.numOfPlayer+=1;
     }
 
@@ -87,17 +93,17 @@ public class GameRoom implements Runnable{
     private void ready(){
         int numReady= 0;
         //change status
-        //player.setStatus("ready");
-        // send message to other players
+        //player.setStatus(PlayerStatus.READY);
+        // send messages to other players
 
         //check how many players are in ready condition
         for (ScrabblePlayer scrabblePlayer : playerList) {
-            if (scrabblePlayer.getStatus().equals("ready")){
+            if (scrabblePlayer.getStatus() == PlayerStatus.READY){
                 numReady +=1;
             }
         }
 
-        if (numReady == numOfPlayer && numReady >= MINIMUMPLAYERNUMBER ){
+        if (numReady == numOfPlayer && numReady >= MINIMUM_PLAYER_NUMBER ){
             startGame();
         }
 
@@ -109,7 +115,7 @@ public class GameRoom implements Runnable{
     }
 
     private void sequenceDecision(){
-        //return the message that who should go first
+        //return the messages that who should go first
     }
 
     private void gameContent(Message m){
@@ -117,7 +123,7 @@ public class GameRoom implements Runnable{
 //        String Gamelocation = m.getGamelocation();
 //        String Gameword = m.getGameword();
 
-        // send message to other players
+        // send messages to other players
         for (ScrabblePlayer scrabblePlayer : playerList) {
             broadCast();
         }
@@ -146,7 +152,7 @@ public class GameRoom implements Runnable{
     }
 
     private boolean gameEnd(){
-        if (numOfPlayer < MINIMUMPLAYERNUMBER|| spaceRemain == 0){
+        if (numOfPlayer < MINIMUM_PLAYER_NUMBER || spaceRemain == 0){
             return true;
         }
         return false;
@@ -160,7 +166,4 @@ public class GameRoom implements Runnable{
 
     }
 
-    public int getGameId() {
-        return gameId;
-    }
 }

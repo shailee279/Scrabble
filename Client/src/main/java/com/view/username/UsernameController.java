@@ -176,7 +176,7 @@ public class UsernameController implements Initializable {
         hallController = fxmlLoader.getController();
 
         //TODO - check duplicate username
-        // code for showing the 'Game Hall Scene':   " UsernameController.getInstance().showHall(); "
+        // code for showing the 'game Hall Scene':   " UsernameController.getInstance().showHall(); "
         // comment "showHall()" below
         showHall();
 

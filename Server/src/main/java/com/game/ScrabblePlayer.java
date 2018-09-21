@@ -1,11 +1,13 @@
 package com.game;
 
+import com.messages.PlayerStatus;
+
 public class ScrabblePlayer {
     private String playerId;
     private int score;
-    private String status;
+    private PlayerStatus status;
 
-    public ScrabblePlayer(String playerId,String status) {
+    public ScrabblePlayer(String playerId,PlayerStatus status) {
         this.playerId = playerId;
         this.status = status;
     }
@@ -23,10 +25,6 @@ public class ScrabblePlayer {
         this.score = score;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getPlayerId() {
 
         return playerId;
@@ -36,7 +34,12 @@ public class ScrabblePlayer {
         return score;
     }
 
-    public String getStatus() {
+    public PlayerStatus getStatus() {
         return status;
     }
+
+    public void setStatus(PlayerStatus status) {
+        this.status = status;
+    }
+
 }
