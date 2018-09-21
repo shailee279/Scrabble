@@ -1,4 +1,4 @@
-package com.message;
+package com.messages;
 
 /**
  * @author xuwang < xuwang2@student.unimelb.edu.au >
@@ -6,5 +6,5 @@ package com.message;
  * @date 2018/9/21 0:38
  */
 public enum MessageType {
-    NameRequest, READY, GAME_CONTENT, VOTING, PASS
+    NameRequest, JOIN_GAME, READY, GAME_CONTENT, VOTING, PASS
 }
